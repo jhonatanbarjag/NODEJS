@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Películas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        .container {
+            padding: 2rem;
+        }
+        .movie {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .movie img {
+            width: 100%;
+            height: auto;
+        }
+        .movie-info {
+            padding: 1rem;
+        }
+        .movie-info h2 {
+            margin: 0 0 1rem 0;
+        }
+        .movie-info p {
+            margin: 0;
+        }
+        @media (min-width: 600px) {
+            .movies {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+            .movie {
+                flex: 1 1 calc(33.333% - 2rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Películas</h1>
+    </header>
+    <div class="container">
+        <div class="movies">
+            <div class="movie">
+                <img src="https://via.placeholder.com/300x450" alt="Película 1">
+                <div class="movie-info">
+                    <h2>Película 1</h2>
+                    <p>Descripción de la película 1.</p>
+                </div>
+            </div>
+            <div class="movie">
+                <img src="https://via.placeholder.com/300x450" alt="Película 2">
+                <div class="movie-info">
+                    <h2>Película 2</h2>
+                    <p>Descripción de la película 2.</p>
+                </div>
+            </div>
+            <div class="movie">
+                <img src="https://via.placeholder.com/300x450" alt="Película 3">
+                <div class="movie-info">
+                    <h2>Película 3</h2>
+                    <p>Descripción de la película 3.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
