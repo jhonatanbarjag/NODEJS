@@ -3,83 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%=title%></title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1rem;
-            text-align: center;
-        }
-        .container {
-            padding: 2rem;
-        }
-        .movie {
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-            overflow: hidden;
-        }
-        .movie img {
-            width: 100%;
-            height: auto;
-        }
-        .movie-info {
-            padding: 1rem;
-        }
-        .movie-info h2 {
-            margin: 0 0 1rem 0;
-        }
-        .movie-info p {
-            margin: 0;
-        }
-        @media (min-width: 600px) {
-            .movies {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 2rem;
-            }
-            .movie {
-                flex: 1 1 calc(33.333% - 2rem);
-            }
-        }
-    </style>
+    <title>Document</title>
+    <%- include('partials/head') %>
 </head>
 <body>
+    <%- include('partials/navigation') %>
     <header>
-        <h1>Películas</h1>
+        <h1>Bienvenido a CineMax</h1>
+        <nav>
+            <ul>
+                <li><a href="#cartelera">Cartelera</a></li>
+                <li><a href="#proximos-estrenos">Próximos Estrenos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
     </header>
-    <div class="container">
-        <div class="movies">
-            <div class="movie">
-                <img src="https://via.placeholder.com/300x450" alt="Película 1">
-                <div class="movie-info">
-                    <h2>Película 1</h2>
-                    <p>Descripción de la película 1.</p>
-                </div>
-            </div>
-            <div class="movie">
-                <img src="https://via.placeholder.com/300x450" alt="Película 2">
-                <div class="movie-info">
-                    <h2>Película 2</h2>
-                    <p>Descripción de la película 2.</p>
-                </div>
-            </div>
-            <div class="movie">
-                <img src="https://via.placeholder.com/300x450" alt="Película 3">
-                <div class="movie-info">
-                    <h2>Película 3</h2>
-                    <p>Descripción de la película 3.</p>
-                </div>
-            </div>
+
+    <section id="cartelera">
+        <h2>Cartelera</h2>
+        <div class="pelicula">
+            <h3>Película 1</h3>
+            <p>Descripción de la película 1.</p>
         </div>
-    </div>
+        <div class="pelicula">
+            <h3>Película 2</h3>
+            <p>Descripción de la película 2.</p>
+        </div>
+    </section>
+
+    <section id="proximos-estrenos">
+        <h2>Próximos Estrenos</h2>
+        <div class="pelicula">
+            <h3>Película 3</h3>
+            <p>Descripción de la película 3.</p>
+        </div>
+        <div class="pelicula">
+            <h3>Película 4</h3>
+            <p>Descripción de la película 4.</p>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <form>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje"></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 CineMax. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
