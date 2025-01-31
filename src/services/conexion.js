@@ -24,3 +24,14 @@ export async function Conectar(params) {
     }
     
 }
+
+export async function ConsultarPeliculas() {
+    const cliente = new Client(config);
+    try {
+        await cliente.connect();
+        const res = await cliente.query('SELECT * FROM peliculas');
+        return res.rows;     
+    }catch (error) {
+        console.error(error);
+    }
+}
