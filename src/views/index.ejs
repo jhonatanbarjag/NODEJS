@@ -5,43 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%=title%></title>
     <%- include('partials/head') %>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+        .card {
+            width: calc(25% - 1rem);
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+        .card-body {
+            padding: 1rem;
+        }
+        .card-title {
+            margin: 0 0 1rem 0;
+        }
+        .card-text {
+            margin: 0 0 1rem 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <%- include('partials/navigation') %>
-    <header>
-        <h1>Bienvenido a CineMax</h1>
-        <nav>
-            <ul>
-                <li><a href="#cartelera">Cartelera</a></li>
-                <li><a href="#proximos-estrenos">Próximos Estrenos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="cartelera">
-        <h2>Cartelera</h2>
-        <div class="pelicula">
-            <h3>Película 1</h3>
-            <p>Descripción de la película 1.</p>
-        </div>
-        <div class="pelicula">
-            <h3>Película 2</h3>
-            <p>Descripción de la película 2.</p>
-        </div>
-    </section>
-
-    <section id="proximos-estrenos">
-        <h2>Próximos Estrenos</h2>
-        <div class="pelicula">
-            <h3>Película 3</h3>
-            <p>Descripción de la película 3.</p>
-        </div>
-        <div class="pelicula">
-            <h3>Película 4</h3>
-            <p>Descripción de la película 4.</p>
-        </div>
-    </section>
+    <h1>Catálogo de Películas</h1>
+    <div class="cards-container" id="mostrarPeliculasDiv"></div>
 
     <section id="contacto">
         <h2>Contacto</h2>
@@ -56,8 +77,60 @@
         </form>
     </section>
 
-    <footer>
-        <p>&copy; 2023 CineMax. Todos los derechos reservados.</p>
-    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', getPeliculas);
+
+        function mostrarPeliculas(peliculas) {
+            const mostrarPeliculasDiv = document.getElementById('mostrarPeliculasDiv');
+            peliculas.forEach(pelicula => {
+                const peliculaDiv = document.createElement('div');
+                peliculaDiv.classList.add('card');
+
+                const tituloPelicula = document.createElement('h5');
+                tituloPelicula.classList.add('card-title');
+                tituloPelicula.textContent = pelicula.titulo;
+
+                const imagenPelicula = document.createElement('img');
+                imagenPelicula.src = pelicula.url;
+                imagenPelicula.alt = pelicula.titulo;
+
+                const descripcionPelicula = document.createElement('p');
+                descripcionPelicula.classList.add('card-text');
+                descripcionPelicula.textContent = pelicula.descripcion;
+
+                const linkPelicula = document.createElement('a');
+                linkPelicula.href = pelicula.link;
+                linkPelicula.classList.add('btn');
+                linkPelicula.textContent = 'Ver más';
+
+                peliculaDiv.appendChild(imagenPelicula);
+                peliculaDiv.appendChild(tituloPelicula);
+                peliculaDiv.appendChild(descripcionPelicula);
+                peliculaDiv.appendChild(linkPelicula);
+
+                mostrarPeliculasDiv.appendChild(peliculaDiv);
+            });
+        }
+
+        async function getPeliculas() {
+            try {
+                const response = await fetch('http://localhost:3000/api/get-peliculas', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    const peliculas = await response.json();
+                    mostrarPeliculas(peliculas);
+                } else {
+                    console.log('Error al obtener las peliculas');
+                }
+            } catch (error) {
+                console.log('Error al obtener las peliculas');
+            }
+        }
+    </script>
 </body>
 </html>
