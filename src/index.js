@@ -6,13 +6,20 @@ import { Conectar } from './services/conexion.js';
 
 const app = express();
 
+//configurar el motor de plantillas
 const __dirname = dirname(fileURLToPath(import.meta.url));
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(router);
 
+
+//usar enrutamiento y archivos estaticos
+app.use(router);
 app.use(express.static(join(__dirname, 'public')));
 
+
+//inicio del servidor
 app.listen(3000)
-Conectar();
 console.log('Server running at http://localhost:3000/');
+
+//conectar a la base de datos
+Conectar();
